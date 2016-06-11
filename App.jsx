@@ -7,7 +7,7 @@ class Header extends React.Component {
         }
         return (
             <h1 style={headerStyle}>
-                This is a basic React App
+                {this.props.headerProp}
             </h1>
         );
     }
@@ -29,9 +29,24 @@ class TableRow extends React.Component {
 }
 
 class Content extends React.Component {
-    constructor()
-    {
-        super();
+    render() {
+        return (
+            <div>
+                {this.props.contentProp.map((contentList, i) => < TableRow key = {
+                    i
+                }
+                data = {
+                    contentList
+                } />)}
+            </div>
+        );
+    }
+}
+
+class Page extends React.Component {
+    constructor() {
+      super();
+        this.header = "This is a basic React App Header got from prop"
         this.listOfContent = {
             data: [
                 {
@@ -47,18 +62,8 @@ class Content extends React.Component {
     render() {
         return (
             <div>
-                {this.listOfContent.data.map((contentList, i)=> < TableRow key = {i} data = {contentList} />)}
-            </div>
-        );
-    }
-}
-
-class Page extends React.Component {
-    render() {
-        return (
-            <div>
-                <Header/>
-                <Content/>
+                <Header headerProp= {this.header}/>
+                <Content contentProp= {this.listOfContent.data}/>
             </div>
         );
     }
