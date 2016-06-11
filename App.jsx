@@ -43,6 +43,33 @@ class Content extends React.Component {
     }
 }
 
+class Button extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      data : []
+    }
+
+    this.buttonClicked = this.buttonClicked.bind(this)
+  }
+
+  buttonClicked() {
+      var item = "buttonClicked..."
+      var myArray = this.state.data;
+      myArray.push(item)
+      this.setState({data: myArray})
+   };
+
+   render() {
+      return (
+         <div>
+            <button onClick = {this.buttonClicked}>BUTTON</button>
+            <h4>{this.state.data}</h4>
+         </div>
+      );
+   }
+}
+
 class Page extends React.Component {
     constructor() {
       super();
@@ -64,6 +91,7 @@ class Page extends React.Component {
             <div>
                 <Header headerProp= {this.header}/>
                 <Content contentProp= {this.listOfContent.data}/>
+                <Button/>
             </div>
         );
     }
