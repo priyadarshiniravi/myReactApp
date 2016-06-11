@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 class Header extends React.Component {
     render() {
@@ -37,9 +38,14 @@ class Inputbox extends React.Component {
         }
 
         this.nameChanged = this.nameChanged.bind(this);
+        this.clearData = this.clearData.bind(this);
 
     };
 
+    clearData() {
+      this.setState({data: ''});
+      ReactDOM.findDOMNode(this.refs.inputData).focus();
+    }
     nameChanged(e) {
         this.setState({data: e.target.value});
     }
@@ -47,7 +53,8 @@ class Inputbox extends React.Component {
     render() {
         return (
             <div>
-                <input type="text" value={this.state.data} onChange={this.nameChanged}/>
+                <input type="text" value={this.state.data} onChange={this.nameChanged} ref="inputData"/>
+                <button onClick={this.clearData}>clear</button>
                 <h4>Hi {this.state.data}!</h4>
             </div>
         );
